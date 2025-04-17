@@ -472,3 +472,118 @@ ax.legend()
 plt.title("Relationship between Sepal Widths & Lengths")
 #plt.show()
 plt.savefig("sepal_lengths_vs_sepal_widths.png")
+
+# *************************************************************************************************************************************************************
+# *************** Box plots of Petal Lengths *************************************************************************************
+# *************************************************************************************************************************************************************
+
+petal_lengths=np.array([setosa_petal_length, versicolor_petal_length,virginica_petal_length])
+#print(petal_lengths)
+# create figure, axis
+fig, ax = plt.subplots()
+
+# create boxplot, we will use .T because we need to transpose our data to make rows columns and columns rows because thats what boxplot expect)
+ax.boxplot(petal_lengths.T)
+
+# title
+ax.set_title("Classes of Iris", fontsize=16)
+
+# axis labels
+ax.set_xlabel("Classes", fontsize=12)
+ax.set_ylabel("Petal Length", fontsize=12)
+
+# set names of x-axis ticks, just puts the names on the horizontal axis 
+ax.set_xticks([1,2,3],["Setosa","Versicolor","Virginica"], fontsize=10)
+
+# add a grid so we have horizontal dotted lines making it easier to see the values on the chart, alpha is how transparent the dotted lines are
+ax.grid(axis="y", linestyle="--", alpha=0.7)
+plt.savefig("boxplot_of_petal_lengths.png")
+
+# *************************************************************************************************************************************************************
+# *************** Box plots of Petal Widths *************************************************************************************
+# *************************************************************************************************************************************************************
+
+petal_widths=np.array([setosa_petal_width, versicolor_petal_width,virginica_petal_width])
+#print(petal_widths)
+# create figure, axis
+fig, ax = plt.subplots()
+
+# create boxplot, we will use .T because we need to transpose our data to make rows columns and columns rows because thats what boxplot expect)
+ax.boxplot(petal_widths.T)
+
+# title
+ax.set_title("Classes of Iris", fontsize=16)
+
+# axis labels
+ax.set_xlabel("Classes", fontsize=12)
+ax.set_ylabel("Petal Length", fontsize=12)
+
+# set names of x-axis ticks, just puts the names on the horizontal axis 
+ax.set_xticks([1,2,3],["Setosa","Versicolor","Virginica"], fontsize=10)
+
+# add a grid so we have horizontal dotted lines making it easier to see the values on the chart, alpha is how transparent the dotted lines are
+ax.grid(axis="y", linestyle="--", alpha=0.7)
+plt.savefig("boxplot_of_petal_widths.png")
+
+# *************************************************************************************************************************************************************
+# *************** Box plots of Sepal Lengths *************************************************************************************
+# *************************************************************************************************************************************************************
+
+sepal_lengths=np.array([setosa_sepal_length, versicolor_sepal_length,virginica_sepal_length])
+#print(petal_lengths)
+# create figure, axis
+fig, ax = plt.subplots()
+
+# create boxplot, we will use .T because we need to transpose our data to make rows columns and columns rows because thats what boxplot expect)
+ax.boxplot(sepal_lengths.T)
+
+# title
+ax.set_title("Classes of Iris", fontsize=16)
+
+# axis labels
+ax.set_xlabel("Classes", fontsize=12)
+ax.set_ylabel("Petal Length", fontsize=12)
+
+# set names of x-axis ticks, just puts the names on the horizontal axis 
+ax.set_xticks([1,2,3],["Setosa","Versicolor","Virginica"], fontsize=10)
+
+# add a grid so we have horizontal dotted lines making it easier to see the values on the chart, alpha is how transparent the dotted lines are
+ax.grid(axis="y", linestyle="--", alpha=0.7)
+plt.savefig("boxplot_of_sepal_lengths.png")
+
+# *************************************************************************************************************************************************************
+# *************** Box plots of Sepal Widths *************************************************************************************
+# *************************************************************************************************************************************************************
+
+sepal_widths=np.array([setosa_sepal_width, versicolor_sepal_width,virginica_sepal_width])
+#print(petal_lengths)
+# create figure, axis
+fig, ax = plt.subplots()
+
+# create boxplot, we will use .T because we need to transpose our data to make rows columns and columns rows because thats what boxplot expect)
+ax.boxplot(sepal_widths.T)
+
+# title
+ax.set_title("Classes of Iris", fontsize=16)
+
+# axis labels
+ax.set_xlabel("Classes", fontsize=12)
+ax.set_ylabel("Petal Length", fontsize=12)
+
+# set names of x-axis ticks, just puts the names on the horizontal axis 
+ax.set_xticks([1,2,3],["Setosa","Versicolor","Virginica"], fontsize=10)
+
+# add a grid so we have horizontal dotted lines making it easier to see the values on the chart, alpha is how transparent the dotted lines are
+ax.grid(axis="y", linestyle="--", alpha=0.7)
+plt.savefig("boxplot_of_sepal_widths.png")
+
+
+#overall_petal_length=np.array(iris_df["petal_length"])
+#overall_petal_width=np.array(iris_df["petal_width"])
+#overall_sepal_length=np.array(iris_df["sepal_length"])
+#overall_sepal_width=np.array(iris_df["sepal_width"])
+#overall_array=([overall_petal_length,overall_petal_width,overall_sepal_length,overall_sepal_width])
+#overall_array = iris_df["sepal_length", "sepal_width","petal_length","petal_width"]
+#overall_array = iris_df.drop[columns="class"]
+#overall_array.corr()
+#print(f"\n{overall_array}")
