@@ -38,7 +38,9 @@ col_names= ("sepal_length", "sepal_width", "petal_length", "petal_width", "class
 # the data is column separated, the csv file currently has no headers, sp let's add the column names as we import the data
 iris_df = pd.read_csv(csv_filename, sep=',',  header= None, names=col_names)
 
-#'''
+         
+
+'''
 print(f"{iris_df.shape}")
 #'''
 # the print function has showed us there are 150 rows of data x 5 columns, 
@@ -577,13 +579,61 @@ ax.set_xticks([1,2,3],["Setosa","Versicolor","Virginica"], fontsize=10)
 ax.grid(axis="y", linestyle="--", alpha=0.7)
 plt.savefig("boxplot_of_sepal_widths.png")
 
+# ************************************************************************************************************************
+# ****************** Correlation Coefficients ****************************************************************************
+# ************************************************************************************************************************
 
-#overall_petal_length=np.array(iris_df["petal_length"])
-#overall_petal_width=np.array(iris_df["petal_width"])
-#overall_sepal_length=np.array(iris_df["sepal_length"])
-#overall_sepal_width=np.array(iris_df["sepal_width"])
-#overall_array=([overall_petal_length,overall_petal_width,overall_sepal_length,overall_sepal_width])
-#overall_array = iris_df["sepal_length", "sepal_width","petal_length","petal_width"]
-#overall_array = iris_df.drop[columns="class"]
-#overall_array.corr()
-#print(f"\n{overall_array}")
+# The correlation coefficient is a builtin function from pandas, (source: https://www.geeksforgeeks.org/python-pandas-dataframe-corr/) 
+# so we want to see how each of our variables correlate with one another
+# however first we must state that from our array, we only want the numeric columns, not the alphabetical class column
+# we do this by passing the "numeric_only=True" parameter in the correlation function (we'll leve the default as Pearson's correlation)
+print(f"\n{iris_df.corr(numeric_only=True,)}\n")
+
+# let's now write it to an external text file so we can copy it into our report if needed
+with open("correlation_coefficients.txt","w") as f:
+     f.write(str(iris_df.corr(numeric_only=True)))
+
+#Correlation Coefficient Summary:
+#- Sepal length and sepal width have little or no correlation, at 0.1
+#- But sepal length has a relatively large correlation with both petal length and petal width (circa 0.8)
+#- Next, petal length has only a small correlation with sepal width (circa 0.4)
+#- Finally, we see that petal width has a very large correlation with petal length (circa 0.96) 
+#*****************************************************************************************************************************
+ 
+
+ #*************************************** Heat Map of Correlations **********************************************************
+fig, ax = plt.subplots()
+data = (iris_df.corr(numeric_only=True))
+
+features = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
+
+
+im = ax.imshow(data, cmap="hot")
+        
+# okay, just messing around with some of the charts here https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap i found  colorbar
+# which is a legend for how strong the correlation is
+plt.colorbar(im)
+
+# row_labels=features, col_labels=features
+#interpolation="nearest"
+#ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
+#ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
+#ax.grid(which="minor", color="r", linestyle='-', linewidth=3)
+#ax.tick_params(which="minor", bottom=False, left=False)
+
+# Show all ticks and label them with the respective list entries
+#ax.set_xticks(labels=features)
+#ax.set_yticks(labels=features)
+
+
+# axis labels
+ax.set_xlabel(features, fontsize=12)
+ax.set_ylabel("Iris Features", fontsize=12)
+
+ax.set_title("Correlation Coefficients")
+fig.tight_layout()
+#plt.show()
+plt.savefig("heatmap_of_correlation_coefficients.png")
+
+
+
