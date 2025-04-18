@@ -11,8 +11,10 @@
 import matplotlib.pyplot as plt
 # I will import numpy so i can perform various mathematical operations with my arrays 
 import numpy as np
-#I will import pandas because it is great for with dataframes
+# I will import pandas because it is great for with dataframes
 import pandas as pd
+# sklearn is a popular machine learning library that provides tools for data preprocessing, model selection, and evaluation.
+from sklearn.linear_model import LinearRegression as lr
 
 # first things first is to import the data set
 path = "/home/gerry/Downloads/Data_Analytics_Course/pands/pands-project/data/iris/"
@@ -608,32 +610,58 @@ data = (iris_df.corr(numeric_only=True))
 features = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
 
 
-im = ax.imshow(data, cmap="hot")
+im = ax.imshow(data, cmap="seismic")
+# choosing the color for color map - reference
         
-# okay, just messing around with some of the charts here https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap i found  colorbar
+# okay, just messing around with some of the charts here https://stackoverflow.com/questions/33282368/plotting-a-2d-heatmap 
+# and https://www.geeksforgeeks.org/display-the-pandas-dataframe-in-heatmap-style/ I found  colorbar
 # which is a legend for how strong the correlation is
-plt.colorbar(im)
-
-# row_labels=features, col_labels=features
-#interpolation="nearest"
-#ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-#ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
-#ax.grid(which="minor", color="r", linestyle='-', linewidth=3)
-#ax.tick_params(which="minor", bottom=False, left=False)
+plt.colorbar(im, label="Correlation Coefficient")
 
 # Show all ticks and label them with the respective list entries
-#ax.set_xticks(labels=features)
-#ax.set_yticks(labels=features)
-
+plt.xticks(range(len(data)), data.columns) 
+plt.yticks(range(len(data)), data.columns) 
 
 # axis labels
-ax.set_xlabel(features, fontsize=12)
+ax.set_xlabel("Iris Features", fontsize=12)
 ax.set_ylabel("Iris Features", fontsize=12)
 
 ax.set_title("Correlation Coefficients")
 fig.tight_layout()
 #plt.show()
 plt.savefig("heatmap_of_correlation_coefficients.png")
+
+#****************************************************************************************************************************
+#******************************** R-Squared ********************************************************************************
+#****************************************************************************************************************************
+
+
+
+model = lr()
+
+# Train the model
+model.fit(sepal_widths,sepal_lengths)
+
+# Evaluate the model
+r2_score = model.score(sepal_widths,sepal_lengths)
+print(f"The R-squared value of sepal widths regressed aginst sepal lengths is: {r2_score}")
+
+from sklearn.metrics import r2_score
+
+print(f"{(r2_score(sepal_widths, sepal_lengths))}")
+from scipy import stats
+
+slope, intercept, r_value, p_value, std_err = stats.linregress(sepal_widths, sepal_lengths)
+print("slope: %f    intercept: %f" % (slope, intercept))
+
+# Train the model
+model.fit(petal_widths,petal_lengths)
+
+# Evaluate the model
+r2_score = model.score(petal_widths,petal_lengths)
+print(f"The R-squared value of petal widths regressed aginst petal lengths is: {r2_score}")
+
+
 
 
 
