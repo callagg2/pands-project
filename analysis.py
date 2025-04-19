@@ -16,6 +16,13 @@ import pandas as pd
 # sklearn is a popular machine learning library that provides tools for data preprocessing, model selection, and evaluation.
 from scipy import stats
 
+# Import seaborn
+import seaborn as sns
+
+# Apply the default theme for seaborn
+sns.set_theme()
+
+
 # first things first is to import the data set
 path = "/home/gerry/Downloads/Data_Analytics_Course/pands/pands-project/data/iris/"
 #path = "./data/iris/"
@@ -705,3 +712,15 @@ ax.legend()
 plt.title("Relationship between Sepal Widths & Lengths")
 plt.legend()
 plt.savefig("Fitted_Line_on_sepal_length_vs_sepal_width.png")
+
+# ******************************************************************************************************************************************************
+# *************************************** Add a Pairplot **********************************************************************************************
+# *****************************************************************************************************************************************************
+# the following are based on examples from https://seaborn.pydata.org/generated/seaborn.pairplot.html 
+# and https://seaborn.pydata.org/tutorial/introduction.html
+
+
+g=sns.pairplot(iris_df,  x_vars=["petal_length", "petal_width"],
+    y_vars=["sepal_length", "sepal_width"], hue="class",diag_kind="hist", markers=["o", "s", "D"], corner=True, height=1.5)
+g.add_legend(frameon=True)
+plt.savefig("pairplot.png")
