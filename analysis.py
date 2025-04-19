@@ -14,7 +14,7 @@ import numpy as np
 # I will import pandas because it is great for with dataframes
 import pandas as pd
 # sklearn is a popular machine learning library that provides tools for data preprocessing, model selection, and evaluation.
-from sklearn.linear_model import LinearRegression as lr
+from scipy import stats
 
 # first things first is to import the data set
 path = "/home/gerry/Downloads/Data_Analytics_Course/pands/pands-project/data/iris/"
@@ -635,33 +635,73 @@ plt.savefig("heatmap_of_correlation_coefficients.png")
 #******************************** R-Squared ********************************************************************************
 #****************************************************************************************************************************
 
+# Using the linear regression model approach as seen here https://stackoverflow.com/questions/28753502/scipy-stats-linregress-get-p-value-of-intercept
+# and https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html 
+# must be in the form of linregress(x variable, y=variable)
+
+fig, ax = plt.subplots()
+
+#Scatter plot
+ax.scatter(setosa_petal_width,setosa_petal_length, marker="o",label="Setosa")
+ax.scatter(versicolor_petal_width,versicolor_petal_length,marker="d", label="Versicolor")
+ax.scatter(virginica_petal_width,virginica_petal_length,marker="v", label="Virginica")
+
+#plt.plot(setosa_petal_width, setosa_petal_length, 'o', label='original data')
+#plt.plot(versicolor_petal_width, versicolor_petal_length, 'o', label='original data')
+#plt.plot(virginica_petal_width, virginica_petal_length, 'o', label='original data')
+
+results_setosa_petal = stats.linregress(setosa_petal_width, setosa_petal_length)
+#slope, intercept, r_value, p_value, std_err = stats.linregress(setosa_petal_width, setosa_petal_length)
+print(f"Setosa Petal Length = b*Setosa Petal Width\nSlope is:\t{round(results_setosa_petal.slope,2)}\nIntercept is:\t{round(results_setosa_petal.intercept,2)}\nR-Squared is:\t{round(results_setosa_petal.rvalue,2)}\nP-value is:\t{round(results_setosa_petal.pvalue,2)}\nStd Error is:\t{round(results_setosa_petal.stderr,2)}")
+plt.plot(setosa_petal_width, results_setosa_petal.intercept + results_setosa_petal.slope*setosa_petal_width, 'b', label='Setosa R-squared')
+      
+results_versicolor_petal = stats.linregress(versicolor_petal_width, versicolor_petal_length)
+print(f"\nVersicolor Petal Length = b*Versicolor Petal Width\nSlope is:\t{round(results_setosa_petal.slope,2)}\nIntercept is:\t{round(results_setosa_petal.intercept,2)}\nR-Squared is:\t{round(results_setosa_petal.rvalue,2)}\nP-value is:\t{round(results_setosa_petal.pvalue,2)}\nStd Error is:\t{round(results_setosa_petal.stderr,2)}")
+plt.plot(versicolor_petal_width, results_versicolor_petal.intercept + results_versicolor_petal.slope*versicolor_petal_width, 'y', label='Versicolor R-squared')
+
+results_virginica_petal = stats.linregress(virginica_petal_width, virginica_petal_length)
+print(f"\nVirginica Petal Length = b*Virginica Petal Width\nSlope is:\t{round(results_virginica_petal.slope,2)}\nIntercept is:\t{round(results_virginica_petal.intercept,2)}\nR-Squared is:\t{round(results_virginica_petal.rvalue,2)}\nP-value is:\t{round(results_virginica_petal.pvalue,2)}\nStd Error is:\t{round(results_virginica_petal.stderr,2)}")
+plt.plot(virginica_petal_width, results_virginica_petal.intercept + results_virginica_petal.slope*virginica_petal_width, 'g', label='Virginica R-squared')
+
+#Labels
+ax.set_xlabel("Sepal Widths")
+ax.set_ylabel("Sepal Lengths")
+
+plt.title("Relationship between Petal Widths & Lengths")
+plt.legend()
+plt.savefig("Fitted_Line_on_petal_length_vs_petal_width.png")
 
 
-model = lr()
-
-# Train the model
-model.fit(sepal_widths,sepal_lengths)
-
-# Evaluate the model
-r2_score = model.score(sepal_widths,sepal_lengths)
-print(f"The R-squared value of sepal widths regressed aginst sepal lengths is: {r2_score}")
-
-from sklearn.metrics import r2_score
-
-print(f"{(r2_score(sepal_widths, sepal_lengths))}")
-from scipy import stats
-
-slope, intercept, r_value, p_value, std_err = stats.linregress(sepal_widths, sepal_lengths)
-print("slope: %f    intercept: %f" % (slope, intercept))
-
-# Train the model
-model.fit(petal_widths,petal_lengths)
-
-# Evaluate the model
-r2_score = model.score(petal_widths,petal_lengths)
-print(f"The R-squared value of petal widths regressed aginst petal lengths is: {r2_score}")
 
 
+fig, ax = plt.subplots()
 
+#Scatter plot
+ax.scatter(setosa_sepal_width,setosa_sepal_length, marker="o",label="Setosa")
+ax.scatter(versicolor_sepal_width,versicolor_sepal_length,marker="d", label="Versicolor")
+ax.scatter(virginica_sepal_width,virginica_sepal_length,marker="v", label="Virginica")
 
+#plt.plot(setosa_sepal_width, setosa_sepal_length, 'o', label='original data')
+#plt.plot(versicolor_sepal_width, versicolor_sepal_length, 'd', label='original data')
+#plt.plot(virginica_sepal_width, virginica_sepal_length, 'o', label='original data')
 
+results_setosa_sepal = stats.linregress(setosa_sepal_width, setosa_sepal_length)
+print(f"\nSetosa Sepal Length = b*Setosa Sepal Width\nSlope is:\t{round(results_setosa_sepal.slope,2)}\nIntercept is:\t{round(results_setosa_sepal.intercept,2)}\nR-Squared is:\t{round(results_setosa_sepal.rvalue,2)}\nP-value is:\t{round(results_setosa_sepal.pvalue,2)}\nStd Error is:\t{round(results_setosa_sepal.stderr,2)}")
+plt.plot(setosa_sepal_width, results_setosa_sepal.intercept + results_setosa_sepal.slope*setosa_sepal_width, 'b', label='Setosa R-squared')
+
+results_versicolor_sepal = stats.linregress(versicolor_sepal_width, versicolor_sepal_length)
+print(f"\nVersicolor Sepal Length = b*Versicolor Sepal Width\nSlope is:\t{round(results_versicolor_sepal.slope,2)}\nIntercept is:\t{round(results_versicolor_sepal.intercept,2)}\nR-Squared is:\t{round(results_versicolor_sepal.rvalue,2)}\nP-value is:\t{round(results_versicolor_sepal.pvalue,2)}\nStd Error is:\t{round(results_versicolor_sepal.stderr,2)}")
+plt.plot(versicolor_sepal_width, results_versicolor_sepal.intercept + results_versicolor_sepal.slope*versicolor_sepal_width, 'y', label='Versicolor R-squared')
+
+results_virginica_sepal = stats.linregress(virginica_sepal_width, virginica_sepal_length)
+print(f"\nVirginica Sepal Length = b*Virginica Sepal Width\nSlope is:\t{round(results_virginica_sepal.slope,2)}\nIntercept is:\t{round(results_virginica_sepal.intercept,2)}\nR-Squared is:\t{round(results_virginica_sepal.rvalue,2)}\nP-value is:\t{round(results_virginica_sepal.pvalue,2)}\nStd Error is:\t{round(results_virginica_sepal.stderr,2)}")
+plt.plot(virginica_sepal_width, results_virginica_sepal.intercept + results_virginica_sepal.slope*virginica_sepal_width, 'g', label='Verginica R-squared')
+
+#Labels
+ax.set_xlabel("Sepal Widths")
+ax.set_ylabel("Sepal Lengths")
+ax.legend()
+
+plt.title("Relationship between Sepal Widths & Lengths")
+plt.legend()
+plt.savefig("Fitted_Line_on_sepal_length_vs_sepal_width.png")
