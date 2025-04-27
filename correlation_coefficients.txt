@@ -1,5 +1,29 @@
+
+
+Iris
               sepal_length  sepal_width  petal_length  petal_width
 sepal_length      1.000000    -0.109369      0.871754     0.817954
 sepal_width      -0.109369     1.000000     -0.420516    -0.356544
 petal_length      0.871754    -0.420516      1.000000     0.962757
 petal_width       0.817954    -0.356544      0.962757     1.000000
+
+Setosa
+              sepal_length  sepal_width  petal_length  petal_width
+sepal_length      1.000000     0.746780      0.263874     0.279092
+sepal_width       0.746780     1.000000      0.176695     0.279973
+petal_length      0.263874     0.176695      1.000000     0.306308
+petal_width       0.279092     0.279973      0.306308     1.000000
+
+Versicolor
+              sepal_length  sepal_width  petal_length  petal_width
+sepal_length      1.000000     0.525911      0.754049     0.546461
+sepal_width       0.525911     1.000000      0.560522     0.663999
+petal_length      0.754049     0.560522      1.000000     0.786668
+petal_width       0.546461     0.663999      0.786668     1.000000
+
+Virginica
+              sepal_length  sepal_width  petal_length  petal_width
+sepal_length      1.000000     0.457228      0.864225     0.281108
+sepal_width       0.457228     1.000000      0.401045     0.537728
+petal_length      0.864225     0.401045      1.000000     0.322108
+petal_width       0.281108     0.537728      0.322108     1.000000
