@@ -272,7 +272,7 @@ print(f"Maximum:\t{round(np.max(setosa_petal_width),2)}\t\t{round(np.max(versico
 # i have to convert every number to a string otherwise it won't write to the file
 
 # Sepal Lengths
-with open("sepal_lengths.txt","w") as f:
+with open("summary_statistics_sepal_lengths.txt","w") as f:
      f.write("sepal lengths" + "\n")
      f.write("\t"+"\t"+"Setosa" +"\t"+"Versicolor"+"\t"+"Virginica"+"\t"+"Overall" + "\n")
      f.write("Count:"+"\t"+str(count_setosa) +"\t"+"\t"+str(count_versicolor)+"\t"+"\t"+"\t"+str(count_virginica)+"\t"+"\t"+"\t"+str(max_rows) + "\n")
@@ -287,7 +287,7 @@ with open("sepal_lengths.txt","w") as f:
 
 # Sepal Widths
 # this now prints the above information to a text file called sepal_widths.txt in the same directory
-with open("sepal_widths.txt","w") as f:
+with open("summary_statistics_sepal_widths.txt","w") as f:
      f.write("sepal widths" + "\n")
      f.write("\t"+"\t"+"Setosa" +"\t"+"Versicolor"+"\t"+"Virginica"+"\t"+"Overall" + "\n")
      f.write("Count:"+"\t"+str(count_setosa) +"\t"+"\t"+str(count_versicolor)+"\t"+"\t"+"\t"+str(count_virginica)+"\t"+"\t"+"\t"+str(max_rows) + "\n")
@@ -302,7 +302,7 @@ with open("sepal_widths.txt","w") as f:
 
 # Petal Lengths
 # this now prints the above information to a text file called petal_lengths.txt in the same directory
-with open("petal_lengths.txt","w") as f:
+with open("summary_statistics_petal_lengths.txt","w") as f:
      f.write("Petal lengths" + "\n")
      f.write("\t"+"\t"+"Setosa" +"\t"+"Versicolor"+"\t"+"Virginica"+"\t"+"Overall" + "\n")
      f.write("Count:"+"\t"+str(count_setosa) +"\t"+"\t"+str(count_versicolor)+"\t"+"\t"+"\t"+str(count_virginica)+"\t"+"\t"+"\t"+str(max_rows) + "\n")
@@ -317,7 +317,7 @@ with open("petal_lengths.txt","w") as f:
 
 # Petal Widths
 # this now prints the above information to a text file called petal_widths.txt in the same directory
-with open("petal_widths.txt","w") as f:
+with open("summary_statistics_petal_widths.txt","w") as f:
      f.write("Petal Widths" + "\n")
      f.write("\t"+"\t"+"Setosa" +"\t"+"Versicolor"+"\t"+"Virginica"+"\t"+"Overall" + "\n")
      f.write("Count:"+"\t"+str(count_setosa) +"\t"+"\t"+str(count_versicolor)+"\t"+"\t"+"\t"+str(count_virginica)+"\t"+"\t"+"\t"+str(max_rows) + "\n")
